@@ -1,7 +1,10 @@
 pipeline{
     
     agent any 
-    
+     tools {
+            maven 'mvn'
+                }
+	
     stages {
         
         stage('Git Checkout'){
@@ -10,7 +13,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
+                    git branch: 'main', url: 'https://github.com/rajatpaid/demo-counter-app.git'
                 }
             }
         }
@@ -50,7 +53,7 @@ pipeline{
                 
                 script{
                     
-                    withSonarQubeEnv(credentialsId: 'sonar-api') {
+                    withSonarQubeEnv(credentialsId: 'sonar') {
                         
                         sh 'mvn clean package sonar:sonar'
                     }
@@ -64,7 +67,7 @@ pipeline{
                     
                     script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
                     }
                 }
             }
