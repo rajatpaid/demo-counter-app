@@ -48,10 +48,7 @@ pipeline{
 		script{
 
                 withSonarQubeEnv(credentialsId: 'sonar') {
-    		mvn clean verify sonar:sonar \
-		-D sonar.projectKey=cicd-project \
-  		-D sonar.host.url=http://3.110.218.25:9000 \
-    		-D sonar.login=sqp_0f0c395f5b920dbb3b735c8da78fd299afaac9ef
+		sh 'mvn clean package sonar:sonar'
 	}
 
             }
