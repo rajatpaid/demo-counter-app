@@ -36,11 +36,10 @@ pipeline{
 	stage('Maven Build'){
 
             steps{
-                 script {    
-                withSonarQubeEnv(credentialsId: 'sonar') {
- 		sh 'mvn clean verify sonar:sonar'
-}
-		}
+                  
+                
+ 		sh 'mvn clean install'
+		
             }
         }
 
