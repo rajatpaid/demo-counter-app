@@ -49,7 +49,10 @@ pipeline{
 
                 withSonarQubeEnv(credentialsId: 'sonar') {
     		sh 'mvn clean package sonar:sonar'
-		}
+		-Dsonar.projectKey=cicd-project \
+  		-Dsonar.host.url=http://3.110.218.25:9000 \
+    		-Dsonar.login=sqp_0f0c395f5b920dbb3b735c8da78fd299afaac9ef
+	}
 
             }
 		}
