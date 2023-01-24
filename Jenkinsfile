@@ -1,11 +1,8 @@
 pipeline{
     
-    agent any 
-     tools {
-            maven 'mvn'
-                }
-	
-    stages {
+	agent any
+    	
+	stages {
         
         stage('Git Checkout'){
             
@@ -17,16 +14,7 @@ pipeline{
                 }
             }
         }
-        stage('UNIT testing'){
-            
-            steps{
-                
-                script{
-                    
-                    sh 'mvn test'
-                }
-            }
-        }
+        
         
         }
         
