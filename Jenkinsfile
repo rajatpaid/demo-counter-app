@@ -18,53 +18,7 @@ pipeline{
                 }
             }
         }
-        stage('UNIT testing'){
-
-            steps{
-
-         	sh 'mvn test'
-            }
-        }
-	
-	stage('Integration Test'){
-
-            steps{
-
-                sh 'mvn verify -DskipUnitTests'
-            }
-        }
-	stage('Maven Build'){
-
-            steps{
-                  
-                
- 		sh 'mvn clean install'
-		
-            }
-        }
-         stage('Sonarqube Analysis'){
-
-            steps{
-		script{
-
-                withSonarQubeEnv(credentialsId: 'sonar') {
-		sh 'mvn clean package sonar:sonar'
-	}
-
-            }
-		}
-        }
-	stage('Quality gates status'){
-
-            steps{
-                script{
-
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
-
-            }
-                }
-        }
-
+        
 
 
         
